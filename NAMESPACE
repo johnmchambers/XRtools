@@ -1,0 +1,14 @@
+
+
+importFrom(codetools, makeCodeWalker, walkCode)
+export(callAsList)
+
+export(whichSubclasses, showVectorTypes)
+
+export(pointerString)
+
+export(envName, envNames)
+export(isPrimitiveGeneric)
+
+
+
