@@ -10,5 +10,4 @@ export(pointerString)
 export(envName, envNames)
 export(isPrimitiveGeneric)
 
-
-
+export(classSummary)
