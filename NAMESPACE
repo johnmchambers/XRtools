@@ -11,3 +11,6 @@ export(envName, envNames)
 export(isPrimitiveGeneric)
 
 export(classSummary)
+
+exportClass(methodTags)
+export(methodTags, eligibleMethods)
