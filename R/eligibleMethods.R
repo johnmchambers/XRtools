@@ -27,6 +27,8 @@ setMethod("show", "methodTags", function(object) {
 })
 
 eligibleMethods <- function(f, classes = character(), package = character(), doGroups = TRUE) {
+    if(missing(f))
+        return(.allTags(classes))
     fdef <- getGeneric(f)
     if(length(package))
         methods <- findMethods(f, asNamespace(package))
@@ -55,4 +57,14 @@ eligibleMethods <- function(f, classes = character(), package = character(), doG
         tags <- c(tags, as.character(gptags))
     }
     methodTags(tags, fnames = fnames, fdef = fdef, signature = classes, package = package)
+}
+
+.allTags <- function(classes) {
+    exts <- function(class) if(class == "ANY") class else c(extends(class), "ANY")
+    if(!length(classes))
+        return(character())
+    tags <- exts(classes[[1]])
+    for(class in classes[-1])
+        tags <- outer(tags, exts(class), function(x, y) paste(x, y, sep ="#"))
+    tags
 }
