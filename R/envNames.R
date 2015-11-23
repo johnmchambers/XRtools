@@ -60,3 +60,5 @@ frameEnvName <- function(which = sys.parent()) {
            if(is.name(call[[1]])) as.character(call[[1]])
            else "(function()..)", "()>")
 }
+
+myEnvNames <- function(...) return(XRtools::envNames())

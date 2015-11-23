@@ -3,11 +3,10 @@
 importFrom(codetools, makeCodeWalker, walkCode)
 export(callAsList)
 
-export(whichSubclasses, showVectorTypes)
+export(whichSubclasses, showVectorTypes, typeAndClass)
 
-export(pointerString)
 
-export(envName, envNames)
+export(envName, envNames, myEnvNames)
 export(isPrimitiveGeneric)
 
 export(classSummary)
