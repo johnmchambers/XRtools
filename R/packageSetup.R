@@ -11,14 +11,20 @@
 #' working directory to find the package name.  The package must have been installed in the
 #' library path of this R session.
 #'
-#' @param files The names of the files to be parsed and evaluated for the setup step.
+#' @param file The name of the files to be parsed and evaluated for the setup step.  By default,
+#' looks for \code{"setup.R"} in the inst/tools directory or the current directory.
 #' @param dir Optional directory to use as the working directory for the evaluation. By default
 #' the current working directory should be the source directory for the package.
 #' @param needPackage The package for which the setup is intended.  Not needed if the working
 #' directory (either currently or given by \code{dir} is the source directory for that package.
 #' If supplied can be either the package name or \code{FALSE} if the setup is not intended for
 #' a package.
-packageSetup <- function(files = "tools/setup.R", dir = ".", needPackage = TRUE) {
+packageSetup <- function(file = .findSetup(), dir = ".", needPackage = TRUE) {
+    .findSetup <- function() {
+        for(f in c("inst/setup.R", "inst/tools/setup.R", "./setup.R"))
+            if(file.exists(f)) return(f)
+        NULL
+    }
     wd <- getwd()
     optT <- getOption("topLevelEnvironment")
     on.exit({setwd(wd); options(topLevelEnvironment = optT)})
@@ -40,6 +46,7 @@ packageSetup <- function(files = "tools/setup.R", dir = ".", needPackage = TRUE)
         assign(".packageName", package, envir = env)
     }
     options(topLevelEnvironment = env) # metadata for classes, methods, goes here
-    for(file in files)
-        eval(parse(file),env)
+    if(is.null(file))
+        stop("No file argument, and couldn't find setup.R")
+    eval(parse(file),env)
 }
