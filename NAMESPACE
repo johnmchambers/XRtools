@@ -14,5 +14,3 @@ export(classSummary)
 exportClass(methodTags)
 export(methodTags, eligibleMethods)
 
-export(packageSetup)
-
