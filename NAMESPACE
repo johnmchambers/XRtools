@@ -15,3 +15,6 @@ exportClass(methodTags)
 export(methodTags, eligibleMethods)
 
 export(nsImports)
+
+export(pkgsUsing)
+
