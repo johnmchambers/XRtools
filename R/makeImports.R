@@ -44,6 +44,8 @@ makeImports <- function(package, missingOnly = TRUE, output = stdout()) {
     if(missingOnly)
         exclude <- unique(c(objects(parent.env(env)), exclude))
     globals <- globals[is.na(match(globals, exclude))]
+    if(length(globals)==0)
+        return(invisible(list()))
     pkgs <- sapply(globals, pkgOf)
     imports <- split(globals, pkgs)
     pkgs <- names(imports)
