@@ -15,16 +15,13 @@ classSummary <- function (Class, complete = TRUE, propertiesAreCalled = "Slots")
     else if (complete)
         ClassDef <- getClass(Class)
     else ClassDef <- getClassDef(Class)
+    x <- ClassDef@slots
+    if (length(x))
+        cat("Slots: ",paste(names(x), dQuote(x), sep = " = ", collapse=", "), fill = TRUE)
+    s <- getDirectSupers(ClassDef)
+    if(length(s))
+        cat("\nSuperclasses: ", paste(dQuote(s), sep = "", collapse = ", "),
+            "\n")
     if (nzchar(pkg <- ClassDef@package) && pkg != ".GlobalEnv")
         cat("Package: \"", pkg, "\"", "\n", sep = "")
-    x <- ClassDef@slots
-    if (length(x)) {
-        cat("Slots:\n ")
-        print(matrix(x, nrow = 1, byrow=TRUE, dimnames = list("Class", names(x))))
-    }
-    s <- getDirectSupers(ClassDef)
-    if(length(x))
-        cat("\nSuperclasses: ", paste('"', s, '"', sep = "", collapse = ", "),
-            "\n")
-
 }
