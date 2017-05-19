@@ -2,11 +2,11 @@ Package: XRtools
 Type: Package
 Title: Extending R: Tools and Examples
 Version: 0.5
-Date: 2015-01-24
+Date: 2017-05-19
 Author: John M. Chambers
 Maintainer: John Chambers <jmc@r-project.org>
 Description: Tools and examples for, or inspired by, the book "Extending R"
 License: BSD
-Imports: codetools
+Imports: codetools,methods,utils
 NeedsCompilation: no
-Packaged: 2015-09-26 21:22:57 UTC; jmc
+

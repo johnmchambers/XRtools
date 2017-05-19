@@ -1,6 +1,9 @@
 
 
 importFrom(codetools, makeCodeWalker, walkCode)
+importFrom(methods, getClass, getClassDef, isClassDef, extends, findMethodSignatures, findMethods, getGeneric, getFunction, is, new) 
+importFrom(utils, packageName, download.packages, untar) 
+
 export(callAsList)
 
 export(whichSubclasses, showVectorTypes, typeAndClass)
